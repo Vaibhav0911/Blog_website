@@ -15,9 +15,12 @@ function Signup() {
   const signup = async (data) => {
     setErr("");
     try {
-      const useData = authServices.createAccount(data);
-      if (useData) dispatch(authLogin(useData));
-      navigate("/");
+      const userData = await authServices.createAccount(data);
+      if(userData){
+        const userData = await authServices.getCurrentUser();
+        if (userData) dispatch(authLogin(userData));
+        navigate("/");
+      }
     } catch (error) {
       setErr(error.message);
     }
