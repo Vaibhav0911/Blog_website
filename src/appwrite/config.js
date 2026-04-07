@@ -74,7 +74,6 @@ export class Services {
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug
-            
             )
         } catch (error) {
             console.log("Appwrite serive :: getPost :: error", error);
@@ -88,8 +87,6 @@ export class Services {
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 queries,
-                
-
             )
         } catch (error) {
             console.log("Appwrite serive :: getPosts :: error", error);
