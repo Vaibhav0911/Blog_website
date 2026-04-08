@@ -3,9 +3,9 @@ import { Button, Select, RTE, Input } from "../index";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { services as appwriteServices } from "../../appwrite/config";
+import appwriteServices  from "../../appwrite/config.js";
 
-export default function PostForm(post) {
+export default function PostForm({ post }) {
   const { register, handleSubmit, control, watch, setValue, getValues } =
     useForm({
       defaultValues: {
@@ -26,24 +26,28 @@ export default function PostForm(post) {
 
     if (post) {
       if (file) {
-        await appwriteServices.deleteFile(post.featuredImage);
+        await appwriteServices.deleteFile(post.featureimage);
       }
 
       const dbpost = await appwriteServices.updatePost(post.$id, {
         ...data,
-        featuredImage: file ? file.$id : undefined,
+        featureimage: file ? file.$id : undefined,
       });
 
       if (dbpost) navigate(`/post/${dbpost.$id}`);
     } 
     else {
       if (file) {
-        data.featuredImage = file.$id;
+        console.log(file);
+        data.featureimage = file.$id;
+        console.log(data);
+        console.log(userData);
         const dbpost = await appwriteServices.createPost({
           ...data,
+          featureimage: file ? file.$id : undefined,
           userId: userData.$id,
         });
-
+        console.log(dbpost);
         if (dbpost) navigate(`/post/${dbpost.$id}`);
       }
     }
@@ -102,7 +106,7 @@ export default function PostForm(post) {
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={appwriteServices.getFilePreview(post.featuredImage)}
+                            src={appwriteServices.getFilePreview(post.featureimage)}
                             alt={post.title}
                             className="rounded-lg"
                         />

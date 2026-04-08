@@ -1,12 +1,12 @@
 import { useDispatch } from "react-redux";
 import { login as authLogin } from "../store/authSlice";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import authServices from "../appwrite/auth";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Input, Logo, Button } from "./index";
+import { Input, Logo, Button } from "./index.js";
 
-function Login() {
+export default function Login() {
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -16,9 +16,20 @@ function Login() {
     setErr("");
     try {
       const session = await authServices.login(data);
+      console.log(session);
       if (session) {
         const userData = await authServices.getCurrentUser();
-        if (userData) dispatch(authLogin(userData));
+        console.log(userData);
+        if (userData)
+          dispatch(
+            authLogin({
+              userData: {
+                $id: userData.$id,
+                name: userData.name,
+                email: userData.email,
+              },
+            }),
+          );
         navigate("/");
       }
     } catch (error) {
@@ -73,7 +84,7 @@ function Login() {
                 required: true,
               })}
             />
-            <Button onClick="submit" className="w-full">
+            <Button type="submit" className="w-full">
               Sign in
             </Button>
           </div>
@@ -82,5 +93,3 @@ function Login() {
     </div>
   );
 }
-
-export default Login;

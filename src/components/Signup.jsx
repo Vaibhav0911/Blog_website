@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import authServices from "../appwrite/auth";
 import { login as authLogin } from "../store/authSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Logo, Button, Input } from "./index";
 import { useForm } from "react-hook-form";
 
@@ -16,9 +16,18 @@ function Signup() {
     setErr("");
     try {
       const userData = await authServices.createAccount(data);
-      if(userData){
+      if (userData) {
         const userData = await authServices.getCurrentUser();
-        if (userData) dispatch(authLogin(userData));
+        if (userData)
+          dispatch(
+            authLogin({
+              userData: {
+                $id: userData.$id,
+                name: userData.name,
+                email: userData.email,
+              },
+            }),
+          );
         navigate("/");
       }
     } catch (error) {
@@ -84,7 +93,7 @@ function Signup() {
               })}
             />
 
-            <Button onClick="submit" className="w-full">
+            <Button type="submit" className="w-full">
               Create Account
             </Button>
           </div>

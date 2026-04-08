@@ -1,7 +1,7 @@
 import { Client, Databases, Storage, ID, Query } from "appwrite";
-import conf from "../conf/conf";
+import conf from "../conf/conf.js";
 
-export class Services {
+class Services {
     client = new Client();
     databases;
     bucket;
@@ -14,7 +14,7 @@ export class Services {
         this.bucket = new Storage(this.client);
     }
 
-    async createPost({title, slug, content, featuredImage, status, userId}){
+    async createPost({title, slug, content, featureimage, status, userId}){
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
@@ -23,7 +23,7 @@ export class Services {
                 {
                     title,
                     content,
-                    featuredImage,
+                    featureimage,
                     status,
                     userId,
                 }
@@ -33,7 +33,7 @@ export class Services {
         }
     }
 
-    async updatePost(slug, {title, content, featuredImage, status}){
+    async updatePost(slug, {title, content, featureimage, status}){
         try {
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
@@ -42,7 +42,7 @@ export class Services {
                 {
                     title,
                     content,
-                    featuredImage,
+                    featureimage,
                     status,
 
                 }

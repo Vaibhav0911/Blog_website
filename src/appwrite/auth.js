@@ -17,6 +17,7 @@ export class AuthServices {
         try {
             const userAccount = await this.account.create({userId: ID.unique(), email, password, name});
             if(userAccount){
+               console.log("account created", userAccount); 
                this.login({email, password});  
             }
             else       return userAccount;
@@ -28,6 +29,7 @@ export class AuthServices {
 
     async login({email, password}) {
         try {
+            // await this.account.deleteSessions();
             return await this.account.createEmailPasswordSession({email, password});
         } catch (error) {
             console.log("error in login account", error);
