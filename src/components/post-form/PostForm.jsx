@@ -38,16 +38,11 @@ export default function PostForm({ post }) {
     } 
     else {
       if (file) {
-        console.log(file);
         data.featureimage = file.$id;
-        console.log(data);
-        console.log(userData);
         const dbpost = await appwriteServices.createPost({
           ...data,
-          featureimage: file ? file.$id : undefined,
           userId: userData.$id,
         });
-        console.log(dbpost);
         if (dbpost) navigate(`/post/${dbpost.$id}`);
       }
     }

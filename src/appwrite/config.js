@@ -19,7 +19,7 @@ class Services {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
-                slug,
+                ID.unique(),
                 {
                     title,
                     content,
@@ -44,7 +44,6 @@ class Services {
                     content,
                     featureimage,
                     status,
-
                 }
             )
         } catch (error) {
@@ -53,13 +52,12 @@ class Services {
     }
 
 
-    async deletePost(slug){
+    async deletePost({slug}){
         try {
             await this.databases.deleteDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug
-            
             )
             return true
         } catch (error) {
@@ -68,7 +66,7 @@ class Services {
         }
     }
 
-     async getPost(slug){
+     async getPost({slug}){
         try {
             return await this.databases.getDocument(
                 conf.appwriteDatabaseId,

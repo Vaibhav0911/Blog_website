@@ -16,10 +16,8 @@ export default function Login() {
     setErr("");
     try {
       const session = await authServices.login(data);
-      console.log(session);
       if (session) {
         const userData = await authServices.getCurrentUser();
-        console.log(userData);
         if (userData)
           dispatch(
             authLogin({

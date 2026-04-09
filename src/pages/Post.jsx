@@ -24,10 +24,10 @@ function Post() {
     }
   }, []);
 
-  const deletePost = (slug) => {
+  const deletePost = () => {
      appwriteServices.deletePost(slug).then((status) => {
          if(status){
-            appwriteServices.deleteFile(post.featuredImage);
+            appwriteServices.deleteFile(post.featureimage);
             navigate("/");
          }  
      })
@@ -38,7 +38,7 @@ function Post() {
             <Container>
                 <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
                     <img
-                        src={appwriteServices.getFilePreview(post.featuredImage)}
+                        src={appwriteServices.getFilePreview(post.featureimage)}
                         alt={post.title}
                         className="rounded-xl"
                     />

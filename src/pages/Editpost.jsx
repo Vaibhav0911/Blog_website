@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import appwriteServices from "../appwrite/config";
 
 function Editpost() {
-  const { slug } = useParams();
+  const slug = useParams();
   const [post, setPost] = useState();
   const navigate = useNavigate();
 
