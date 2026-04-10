@@ -127,6 +127,13 @@ class Services {
         )
     }
 
+    getFileView(fileId){
+        return this.bucket.getFileView(
+            conf.appwriteBucketId,
+            fileId
+        )
+    }
+
 }
 
 const services = new Services();

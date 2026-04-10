@@ -33,7 +33,7 @@ export default function PostForm({ post }) {
         ...data,
         featureimage: file ? file.$id : undefined,
       });
-
+      console.log(dbpost);
       if (dbpost) navigate(`/post/${dbpost.$id}`);
     } else {
       if (file) {
@@ -134,7 +134,7 @@ export default function PostForm({ post }) {
             {post && (
               <div className="mb-4 overflow-hidden rounded-2xl border border-white/10 bg-slate-900/40 p-2">
                 <img
-                  src={appwriteServices.getFilePreview(post.featureimage)}
+                  src={appwriteServices.getFileView(post.featureimage)}
                   alt={post.title}
                   className="h-56 w-full rounded-xl object-cover"
                 />

@@ -40,7 +40,7 @@ function Post() {
           {/* Featured Image */}
           <div className="relative mb-8 overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-3 shadow-2xl backdrop-blur-sm">
             <img
-              src={appwriteServices.getFilePreview(post.featureimage)}
+              src={appwriteServices.getFileView(post.featureimage)}
               alt={post.title}
               className="max-h-[500px] w-full rounded-2xl object-cover"
             />
