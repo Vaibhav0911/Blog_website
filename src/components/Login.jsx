@@ -36,54 +36,81 @@ export default function Login() {
   };
 
   return (
-    <div className="flex items-center justify-center w-full">
-      <div
-        className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
-      >
-        <div className="mb-2 flex justify-center">
-          <span className="inline-block w-full max-w-[100px]">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 px-4 py-12">
+      {/* Background glow */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute left-10 top-20 h-40 w-40 rounded-full bg-blue-500/10 blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 h-52 w-52 rounded-full bg-cyan-400/10 blur-3xl"></div>
+      </div>
+
+      <div className="relative w-full max-w-md rounded-3xl border border-white/10 bg-white/10 p-8 shadow-2xl backdrop-blur-xl sm:p-10">
+        {/* Logo */}
+        <div className="mb-6 flex justify-center">
+          <span className="inline-block w-24 transition duration-300 hover:scale-105">
             <Logo width="100%" />
           </span>
         </div>
-        <h2 className="text-center text-2xl font-bold leading-tight">
-          Sign in to your account
-        </h2>
-        <p className="mt-2 text-center text-base text-black/60">
-          Don&apos;t have any account?&nbsp;
+
+        {/* Heading */}
+        <div className="mb-8 text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-white">
+            Welcome Back 👋
+          </h2>
+          <p className="mt-3 text-sm leading-6 text-slate-300">
+            Sign in to continue exploring insightful blogs, practical tutorials,
+            and fresh ideas curated for passionate learners.
+          </p>
+        </div>
+
+        {/* Signup Link */}
+        <p className="mb-6 text-center text-sm text-slate-300">
+          Don’t have an account?{" "}
           <Link
             to="/signup"
-            className="font-medium text-primary transition-all duration-200 hover:underline"
+            className="font-semibold text-blue-400 transition duration-300 hover:text-blue-300 hover:underline"
           >
-            Sign Up
+            Create Account
           </Link>
         </p>
 
-        {err && <p className="text-red-600 mt-8 text-center"> {err} </p>}
-        <form onSubmit={handleSubmit(login)} className="mt-8">
+        {/* Error */}
+        {err && (
+          <p className="mb-5 rounded-xl border border-red-400/20 bg-red-500/10 px-4 py-3 text-center text-sm text-red-300">
+            {err}
+          </p>
+        )}
+
+        {/* Form */}
+        <form onSubmit={handleSubmit(login)}>
           <div className="space-y-5">
             <Input
-              label="Email"
-              placeholder="Enter your email: "
+              label="Email Address"
+              placeholder="Enter your email"
               type="email"
               {...register("email", {
                 required: true,
                 validate: {
                   matchPattern: (value) =>
                     /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                    "Email address must be a valid address",
+                    "Email address must be valid",
                 },
               })}
             />
+
             <Input
               label="Password"
-              placeholder="Enter your password: "
+              placeholder="Enter your password"
               type="password"
               {...register("password", {
                 required: true,
               })}
             />
-            <Button type="submit" className="w-full">
-              Sign in
+
+            <Button
+              type="submit"
+              className="w-full rounded-xl bg-blue-600 py-3 text-white font-semibold shadow-lg shadow-blue-900/30 transition duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
+            >
+              Sign In
             </Button>
           </div>
         </form>

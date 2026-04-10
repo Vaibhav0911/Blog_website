@@ -19,7 +19,7 @@ function Editpost() {
   }, []);
 
   return post ? (
-    <div className="py-8">
+    <div className="">
         <Container>
             <PostForm  post={post} />
         </Container>

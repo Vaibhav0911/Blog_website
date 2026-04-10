@@ -36,44 +36,65 @@ function Signup() {
   };
 
   return (
-    <div className="flex items-center justify-center">
-      <div
-        className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
-      >
-        <div className="mb-2 flex justify-center">
-          <span className="inline-block w-full max-w-[100px]">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 px-4 py-12">
+      {/* Background glow */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute left-10 top-16 h-40 w-40 rounded-full bg-blue-500/10 blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 h-56 w-56 rounded-full bg-cyan-400/10 blur-3xl"></div>
+      </div>
+
+      <div className="relative mx-auto w-full max-w-lg rounded-3xl border border-white/10 bg-white/10 p-8 shadow-2xl backdrop-blur-xl sm:p-10">
+        {/* Logo */}
+        <div className="mb-5 flex justify-center">
+          <span className="inline-block w-full max-w-[100px] transition duration-300 hover:scale-105">
             <Logo width="100%" />
           </span>
         </div>
-        <h2 className="text-center text-2xl font-bold leading-tight">
-          Sign up to create account
-        </h2>
-        <p className="mt-2 text-center text-base text-black/60">
-          Already have an account?&nbsp;
+
+        {/* Heading */}
+        <div className="text-center">
+          <h2 className="text-3xl font-bold tracking-tight text-white">
+            Create Your Account
+          </h2>
+          <p className="mt-3 text-sm leading-6 text-slate-300">
+            Join the platform to publish, explore, and enjoy insightful blogs,
+            tutorials, and stories from passionate creators.
+          </p>
+        </div>
+
+        {/* Login Link */}
+        <p className="mt-5 text-center text-sm text-slate-300">
+          Already have an account?{" "}
           <Link
             to="/login"
-            className="font-medium text-primary transition-all duration-200 hover:underline"
+            className="font-semibold text-blue-400 transition duration-300 hover:text-blue-300 hover:underline"
           >
             Sign In
           </Link>
         </p>
 
-        {err && <p className="text-red-600 mt-8 text-center">{err}</p>}
+        {/* Error */}
+        {err && (
+          <p className="mt-6 rounded-xl border border-red-400/20 bg-red-500/10 px-4 py-3 text-center text-sm text-red-300">
+            {err}
+          </p>
+        )}
 
-        <form onSubmit={handleSubmit(signup)}>
+        {/* Form */}
+        <form onSubmit={handleSubmit(signup)} className="mt-8">
           <div className="space-y-5">
             <Input
-              label="FullName"
-              placeholder="Enter your fullname: "
+              label="Full Name"
+              placeholder="Enter your full name"
               {...register("fullname", {
                 required: true,
               })}
             />
 
             <Input
-              label="Email"
+              label="Email Address"
               type="email"
-              placeholder="Enter your Email: "
+              placeholder="Enter your email"
               {...register("email", {
                 required: true,
                 validate: {
@@ -87,13 +108,16 @@ function Signup() {
             <Input
               label="Password"
               type="password"
-              placeholder="Enter your password: "
+              placeholder="Create a strong password"
               {...register("password", {
                 required: true,
               })}
             />
 
-            <Button type="submit" className="w-full">
+            <Button
+              type="submit"
+              className="w-full rounded-xl bg-blue-600 py-3 text-white font-semibold shadow-lg shadow-blue-900/30 transition duration-300 hover:-translate-y-0.5 hover:bg-blue-700"
+            >
               Create Account
             </Button>
           </div>

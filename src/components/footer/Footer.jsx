@@ -1,48 +1,60 @@
 import { Link } from "react-router-dom";
-import { Logo} from "../index.js";
+import { Logo } from "../index.js";
 
 function Footer() {
   return (
-    <section className="relative overflow-hidden py-10 bg-gray-800 border border-t-2 border-t-black">
-      <div className="relative z-10 mx-auto max-w-7xl px-4">
-        <div className="-m-6 flex flex-wrap">
-          <div className="w-full p-6 md:w-1/2 lg:w-5/12">
+    <footer className="relative overflow-hidden border-t border-white/10 bg-slate-950/95 py-14">
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-12">
+          {/* Brand Section */}
+          <div className="lg:col-span-5">
             <div className="flex h-full flex-col justify-between">
-              <div className="mb-4 inline-flex items-center text-gray-300 hover:text-gray-100">
-                <Logo width="100px" />
-              </div>
               <div>
-                <p className="text-sm text-gray-400">
+                <div className="mb-5 inline-flex items-center text-slate-300 transition duration-300 hover:text-white">
+                  <Logo width="100px" />
+                </div>
+
+                <p className="max-w-md text-sm leading-7 text-slate-400">
+                  Discover thoughtful blogs, practical tutorials, and inspiring
+                  content designed to help readers learn, grow, and stay updated
+                  with modern ideas.
+                </p>
+              </div>
+
+              <div className="mt-6">
+                <p className="text-sm text-slate-500">
                   &copy; Copyright 2023. All Rights Reserved by DevUI.
                 </p>
               </div>
             </div>
           </div>
-          <div className="w-full p-6 md:w-1/2 lg:w-2/12">
+
+          {/* Company */}
+          <div className="lg:col-span-2">
             <div className="h-full">
-              <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-400">
+              <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                 Company
               </h3>
-              <ul>
-                <li className="mb-4">
+              <ul className="space-y-4">
+                <li>
                   <Link
-                    className=" text-base font-medium text-gray-300 hover:text-gray-100"
+                    className="text-sm font-medium text-slate-300 transition duration-300 hover:text-white"
                     to="/"
                   >
                     Features
                   </Link>
                 </li>
-                <li className="mb-4">
+                <li>
                   <Link
-                    className=" text-base font-medium text-gray-300 hover:text-gray-100"
+                    className="text-sm font-medium text-slate-300 transition duration-300 hover:text-white"
                     to="/"
                   >
                     Pricing
                   </Link>
                 </li>
-                <li className="mb-4">
+                <li>
                   <Link
-                    className=" text-base font-medium text-gray-300 hover:text-gray-100"
+                    className="text-sm font-medium text-slate-300 transition duration-300 hover:text-white"
                     to="/"
                   >
                     Affiliate Program
@@ -50,7 +62,7 @@ function Footer() {
                 </li>
                 <li>
                   <Link
-                    className=" text-base font-medium text-gray-300 hover:text-gray-100"
+                    className="text-sm font-medium text-slate-300 transition duration-300 hover:text-white"
                     to="/"
                   >
                     Press Kit
@@ -59,31 +71,33 @@ function Footer() {
               </ul>
             </div>
           </div>
-          <div className="w-full p-6 md:w-1/2 lg:w-2/12">
+
+          {/* Support */}
+          <div className="lg:col-span-2">
             <div className="h-full">
-              <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-400">
+              <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                 Support
               </h3>
-              <ul>
-                <li className="mb-4">
+              <ul className="space-y-4">
+                <li>
                   <Link
-                    className=" text-base font-medium text-gray-300 hover:text-gray-100"
+                    className="text-sm font-medium text-slate-300 transition duration-300 hover:text-white"
                     to="/"
                   >
                     Account
                   </Link>
                 </li>
-                <li className="mb-4">
+                <li>
                   <Link
-                    className=" text-base font-medium text-gray-300 hover:text-gray-100"
+                    className="text-sm font-medium text-slate-300 transition duration-300 hover:text-white"
                     to="/"
                   >
                     Help
                   </Link>
                 </li>
-                <li className="mb-4">
+                <li>
                   <Link
-                    className=" text-base font-medium text-gray-300 hover:text-gray-100"
+                    className="text-sm font-medium text-slate-300 transition duration-300 hover:text-white"
                     to="/"
                   >
                     Contact Us
@@ -91,7 +105,7 @@ function Footer() {
                 </li>
                 <li>
                   <Link
-                    className=" text-base font-medium text-gray-300 hover:text-gray-100"
+                    className="text-sm font-medium text-slate-300 transition duration-300 hover:text-white"
                     to="/"
                   >
                     Customer Support
@@ -100,23 +114,25 @@ function Footer() {
               </ul>
             </div>
           </div>
-          <div className="w-full p-6 md:w-1/2 lg:w-3/12">
+
+          {/* Legals */}
+          <div className="lg:col-span-3">
             <div className="h-full">
-              <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-400">
+              <h3 className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
                 Legals
               </h3>
-              <ul>
-                <li className="mb-4">
+              <ul className="space-y-4">
+                <li>
                   <Link
-                    className=" text-base font-medium text-gray-300 hover:text-gray-100"
+                    className="text-sm font-medium text-slate-300 transition duration-300 hover:text-white"
                     to="/"
                   >
                     Terms &amp; Conditions
                   </Link>
                 </li>
-                <li className="mb-4">
+                <li>
                   <Link
-                    className=" text-base font-medium text-gray-300 hover:text-gray-100"
+                    className="text-sm font-medium text-slate-300 transition duration-300 hover:text-white"
                     to="/"
                   >
                     Privacy Policy
@@ -124,7 +140,7 @@ function Footer() {
                 </li>
                 <li>
                   <Link
-                    className=" text-base font-medium text-gray-300 hover:text-gray-100"
+                    className="text-sm font-medium text-slate-300 transition duration-300 hover:text-white"
                     to="/"
                   >
                     Licensing
@@ -135,7 +151,7 @@ function Footer() {
           </div>
         </div>
       </div>
-    </section>
+    </footer>
   );
 }
 
