@@ -2,17 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import appwriteServices from "../appwrite/config";
 
-function PostCard({ $id, featureimage, title }) {
-  
+function PostCard({ post }) {
+
   return (
     
-    <Link to={`/post/${$id}`} className="group block h-full">
+    <Link to={`/post/${post.$id}`} className="group block h-full">
       <article className="h-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/10 hover:shadow-2xl">
         <div className="overflow-hidden">
           <div className="mb-0 w-full">
             <img
-              src={`${appwriteServices.getFileView(featureimage)}`}
-              alt={title}
+              src={`${appwriteServices.getFileView(post.featureimage)}`}
+              alt={post.title}
               className="h-56 w-full object-cover transition duration-500 group-hover:scale-105"
             />
           </div>
@@ -24,7 +24,7 @@ function PostCard({ $id, featureimage, title }) {
           </span>
 
           <h1 className="line-clamp-2 text-xl font-bold leading-7 text-white transition duration-300 group-hover:text-blue-400">
-            {title}
+            {post.title}
           </h1>
 
           <p className="mt-3 text-sm leading-6 text-slate-300">

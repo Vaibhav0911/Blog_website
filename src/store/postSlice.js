@@ -8,7 +8,7 @@ const initialState = {
 }
 
 const postSlice = createSlice({
-    name: "post",
+    name: "posts",
     initialState,
     reducers: {
         setPosts: (state, action) => {
@@ -22,11 +22,17 @@ const postSlice = createSlice({
         },
         removePost: (state, action) => {
             state.posts = state.posts.filter((post) => post.$id !== action.payload );
+        },
+        isLoading: (state, action) => {
+            state.loading = action.payload;
+        },
+        isError: (state, action) => {
+            state.error = action.payload;
         }
     }
 });
 
-export const {setPosts, setPost, addPost, removePost} = postSlice.actions;
+export const {setPosts, setPost, addPost, removePost, isLoading, isError} = postSlice.actions;
 
 export default postSlice.reducer;
 

@@ -1,19 +1,34 @@
 import { useState, useEffect } from "react";
 import appwriteServices from "../appwrite/config";
 import { Container, PostCard } from "../components/index";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setPost, setPosts, isError, isLoading } from "../store/postSlice";
 
 function Home() {
-  const [posts, setPosts] = useState([]);
+  
   const status = useSelector((state) => state.auth.status);
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(setPosts([]));
+    dispatch(setPost(null));
+    dispatch(isError(null));
+    dispatch(isLoading(true));
+
     appwriteServices.getPosts([]).then((posts) => {
       if (posts) {
-        setPosts(posts.documents);
+        dispatch(setPosts(posts.documents));
       }
+      else{
+        dispatch(isError("0 posts"));
+      }
+    }).catch((err) => {
+      dispatch(isError(err.message || "Something went wrong"));
+    }).finally(() => {
+      dispatch(isLoading(false));
     });
-  }, []);
+    
+  }, [dispatch]);
 
   // if (posts.length === 0) {
    return (

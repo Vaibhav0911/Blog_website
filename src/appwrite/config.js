@@ -30,6 +30,7 @@ class Services {
             )
         } catch (error) {
             console.log("Appwrite serive :: createPost :: error", error);
+            return null;
         }
     }
 
@@ -48,6 +49,7 @@ class Services {
             )
         } catch (error) {
             console.log("Appwrite serive :: updatePost :: error", error);
+            return null;
         }
     }
 
