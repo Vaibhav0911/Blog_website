@@ -21,7 +21,7 @@ const postSlice = createSlice({
            state.posts.push(action.payload); 
         },
         removePost: (state, action) => {
-            state.posts = state.posts.filter((post) => post.$id !== action.payload );
+            state.posts = state.posts.filter((post) => post.$id !== action.payload.$id );
         },
         isLoading: (state, action) => {
             state.loading = action.payload;

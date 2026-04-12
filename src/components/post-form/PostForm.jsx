@@ -36,17 +36,19 @@ export default function PostForm() {
         ...data,
         featureimage: file ? file.$id : undefined,
       });
-      // console.log(dbpost);
 
       if (!dbpost) {
         navigate("/");
         return;
       }
+      
+      const formatPost = JSON.parse(JSON.stringify(dbpost));
+      // console.log(formatPost);
 
       dispatch(removePost(post));
-      dispatch(addPost(dbpost));
-      dispatch(setPost(dbpost));
-      if (dbpost) navigate(`/post/${dbpost.$id}`);
+      dispatch(addPost(formatPost));
+      dispatch(setPost(formatPost));
+      if (formatPost) navigate(`/post/${formatPost.$id}`);
     } else {
       if (file) {
         data.featureimage = file.$id;
@@ -60,9 +62,12 @@ export default function PostForm() {
           return;
         }
 
-        dispatch(addPost(dbpost));
-        dispatch(setPost(dbpost));
-        if (dbpost) navigate(`/post/${dbpost.$id}`);
+        const formatPost = JSON.parse(JSON.stringify(dbpost));
+        // console.log(formatPost);
+
+        dispatch(addPost(formatPost));
+        dispatch(setPost(formatPost));
+        if (formatPost) navigate(`/post/${formatPost.$id}`);
       }
     }
   };

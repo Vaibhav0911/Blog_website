@@ -1,11 +1,20 @@
 import { PostForm, Container } from "../components/index";
-import { useDispatch } from "react-redux";
-import { setPost} from "../store/postSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { setPost, isLoading} from "../store/postSlice";
+import { useEffect, useState } from "react";
 
 function AddPost() {
   
+  const [loader, setLoader] = useState(true);
   const dispatch = useDispatch();
-  dispatch(setPost(null));
+
+  useEffect(() => {
+    dispatch(setPost(null));
+    dispatch(isLoading(false));
+    setLoader(false);
+  }, [dispatch])
+  
+  if(loader)        return <h1>Loading..</h1>
 
   return (
     <div className="">

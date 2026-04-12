@@ -4,67 +4,29 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import appwriteServices from "../appwrite/config";
 import { useDispatch, useSelector } from "react-redux";
 import parse from "html-react-parser";
-import { setPost, addPost, isError, isLoading } from "../store/postSlice";
+import { isError} from "../store/postSlice";
 
 function Post() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
-  const { posts, loading, error } = useSelector(
-    (state) => state.posts,
-  );
+  const { posts, loading, error } = useSelector((state) => state.posts);
   const dispatch = useDispatch();
+  const existingPost =  posts.find((p) => p.$id === slug);
+  const isAuthor = existingPost && userData ? existingPost.userId === userData.$id : false;
 
-  const existingPost = posts.find((p) => p.$id === slug);
-  const isAuthor =
-    existingPost && userData ? existingPost.userId === userData.$id : false;
-
+  useEffect(() => {
     if (!slug) {
       navigate("/");
       return;
     }
 
-
-    if (!existingPost){
+    if (!existingPost) {
       navigate("/");
-      return; 
-    }     
-    
-
-  // useEffect(() => {
-  //   if (!slug) {
-  //     navigate("/");
-  //     return;
-  //   }
-
-  //   dispatch(isLoading(true));
-  //   dispatch(isError(null));
-
-  //   const existingPost = posts.find((p) => p.$id === slug);
-
-  //   if (existingPost) {
-  //     dispatch(setPost(existingPost));
-  //     dispatch(isLoading(false));
-  //     return;
-  //   }
-
-  //   appwriteServices
-  //     .getPost(slug)
-  //     .then((post) => {
-  //       if (post) {
-  //         dispatch(setPost(post));
-  //         dispatch(addPost(post));
-  //       } else {
-  //         navigate("/");
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       dispatch(isError(err.message || "Failed to fetch post"));
-  //     })
-  //     .finally(() => {
-  //       dispatch(isLoading(false));
-  //     });
-  // }, [slug, posts, dispatch, navigate]);
+      return;
+    }
+   
+  }, [navigate, slug, existingPost]);
 
   const deletePost = async () => {
     try {

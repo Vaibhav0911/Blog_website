@@ -17,6 +17,7 @@ import AllPost from "./pages/AllPost.jsx";
 import EditPost from "./pages/Editpost.jsx";
 import AddPost from "./pages/AddPost.jsx";
 import Post from "./pages/Post.jsx";
+import MyPost from "./pages/MyPost.jsx";
 import { AuthLayout } from "./components/index.js";
 
 const router = createBrowserRouter(
@@ -33,6 +34,7 @@ const router = createBrowserRouter(
         <Route path="post/:slug" element={<Post />} />
         <Route path="edit-post/:slug" element={<EditPost />} />
         <Route path="all-posts" element={<AllPost />} />
+        <Route path="my-posts" element={ <MyPost/> } />
         <Route path="add-post" element={<AddPost />} />
       </Route>
     </Route>

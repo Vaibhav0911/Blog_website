@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { PostForm, Container } from "../components/index";
-import { useEffect, useState } from "react";
-import appwriteServices from "../appwrite/config";
+import { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "../store/postSlice";
 
@@ -16,7 +15,6 @@ function Editpost() {
 
     if (!slug || !existingPost || slug !== existingPost.$id) {
       navigate("/");
-      console.log("hello");
       return;
     }
 
