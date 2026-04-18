@@ -34,7 +34,7 @@ const router = createBrowserRouter(
         <Route path="post/:slug" element={<Post />} />
         <Route path="edit-post/:slug" element={<EditPost />} />
         <Route path="all-posts" element={<AllPost />} />
-        <Route path="my-posts" element={ <MyPost/> } />
+        <Route path="my-posts" element={ <MyPost /> } />
         <Route path="add-post" element={<AddPost />} />
       </Route>
     </Route>

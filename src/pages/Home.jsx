@@ -3,12 +3,16 @@ import appwriteServices from "../appwrite/config";
 import { Container, PostCard } from "../components/index";
 import { useSelector, useDispatch } from "react-redux";
 import { setPost, setPosts, isError, isLoading } from "../store/postSlice";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   
   const status = useSelector((state) => state.auth.status);
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
+  const posts = useSelector((state) => state.posts.posts);
+  const activePosts = posts.filter((post) => post.status === "active");
+ 
   useEffect(() => {
     dispatch(setPosts([]));
     dispatch(setPost(null));
@@ -31,7 +35,7 @@ function Home() {
     
   }, [dispatch]);
 
-  // if (posts.length === 0) {
+   
    return (
   <section className="relative w-full min-h-[85vh] overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 px-6 py-16 sm:py-20 lg:py-24">
     {/* Background glow */}
@@ -64,41 +68,43 @@ function Home() {
 
           {/* Buttons */}
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <button className="rounded-xl bg-blue-600 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-blue-900/30 transition duration-300 hover:-translate-y-0.5 hover:bg-blue-700">
+            <button onClick={() => navigate(`${status ? "all-posts" : "login"}`)} className="rounded-xl bg-blue-600 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-blue-900/30 transition duration-300 hover:-translate-y-0.5 hover:bg-blue-700">
               Explore Blogs
             </button>
 
             {!status && (
-              <button className="rounded-xl border border-slate-500/60 bg-white/5 px-8 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition duration-300 hover:border-white hover:bg-white hover:text-slate-900">
+              <button onClick={() => navigate("login")} className="rounded-xl border border-slate-500/60 bg-white/5 px-8 py-3.5 text-base font-semibold text-white backdrop-blur-sm transition duration-300 hover:border-white hover:bg-white hover:text-slate-900">
                 Login Now
               </button>
             )}
           </div>
         </div>
 
-        {/* Stats / Features */}
+        {/* Stats / Features */} 
+        {status ? 
         <div className="mt-16 grid w-full max-w-5xl grid-cols-1 gap-6 md:grid-cols-3">
           <div className="rounded-2xl border border-white/10 bg-white/5 p-7 text-center shadow-xl backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:bg-white/10">
-            <h2 className="text-3xl font-bold text-blue-400">500+</h2>
+            <h2 className="text-3xl font-bold text-blue-400">{posts.length}</h2>
             <p className="mt-3 text-sm font-medium tracking-wide text-slate-300 sm:text-base">
               Articles Published
             </p>
           </div>
 
           <div className="rounded-2xl border border-white/10 bg-white/5 p-7 text-center shadow-xl backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:bg-white/10">
-            <h2 className="text-3xl font-bold text-blue-400">10K+</h2>
+            <h2 className="text-3xl font-bold text-blue-400">{activePosts.length}</h2>
             <p className="mt-3 text-sm font-medium tracking-wide text-slate-300 sm:text-base">
               Active Readers
             </p>
           </div>
 
           <div className="rounded-2xl border border-white/10 bg-white/5 p-7 text-center shadow-xl backdrop-blur-md transition duration-300 hover:-translate-y-1 hover:bg-white/10">
-            <h2 className="text-3xl font-bold text-blue-400">100+</h2>
+            <h2 className="text-3xl font-bold text-blue-400">{activePosts.length * posts.length}</h2>
             <p className="mt-3 text-sm font-medium tracking-wide text-slate-300 sm:text-base">
-              Expert Tutorials
+              Active Users
             </p>
           </div>
-        </div>
+        </div> : <></>
+      }
       </div>
     </Container>
   </section>

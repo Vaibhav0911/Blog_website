@@ -4,10 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { Container, PostCard } from "../components";
 
 export default function MyPost() {
+  
   const { posts, loading, error } = useSelector((state) => state.posts);
   const { userData } = useSelector((state) => state.auth)
   const navigate = useNavigate();
-  const myPosts = posts.filter((post) => post.userId === userData.$id);
+  const myPosts = userData ? posts.filter((post) => post.userId === userData.$id) : [];
 
   useEffect(() => {
     if (loading) {
