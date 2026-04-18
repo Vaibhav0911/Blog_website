@@ -6,7 +6,7 @@ function PostCard({ post }) {
   return (
     <Link to={`/post/${post.$id}`} className="group block h-full">
       <article className="relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-lg backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/10 hover:shadow-2xl">
-        {/* 🔥 Image */}
+        {/* Image */}
         <div className="overflow-hidden">
           <img
             src={`${appwriteServices.getFileView(post.featureimage)}`}
@@ -17,7 +17,7 @@ function PostCard({ post }) {
           />
         </div>
 
-        {/* 🔥 Content */}
+        {/* Content */}
         <div className="p-5">
           <div className="mb-3 flex items-center justify-between">
             {/* Featured */}

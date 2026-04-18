@@ -34,7 +34,7 @@ export default function MyPost() {
       </div>
 
       {myPosts.length === 0 ? (
-        // ✅ Empty State UI (VERY IMPORTANT for UX)
+       
         <div className="flex flex-col items-center justify-center py-20 text-center">
           <h2 className="text-xl font-semibold text-white">
             No posts yet 📭

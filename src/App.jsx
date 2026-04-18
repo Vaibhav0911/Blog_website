@@ -33,15 +33,6 @@ function App() {
   return loading ? (
     <div>Loading..</div>
   ) : (
-    // <div className="bg-gray-300 h-[100vh] w-[100vw]">
-    //   <div className="text-3xl text-white text-center">
-    //     <Header />
-    //     <main>
-    //       <Outlet />
-    //     </main>
-    //     <Footer />
-    //   </div>
-    // </div>
     <div className="min-h-screen w-full bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white">
       <div className="flex min-h-screen flex-col">
         <Header />

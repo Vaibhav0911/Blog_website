@@ -20,7 +20,6 @@ function AuthLayout({ authentication = true }) {
     //let authValue = authStatus === true ? true : false
 
     if (authentication && authStatus !== authentication) {
-      console.log(authentication, authStatus);
       navigate("/login");
     } else if (!authentication && authStatus !== authentication) {
       navigate("/");

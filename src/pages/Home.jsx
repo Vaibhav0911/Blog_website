@@ -22,7 +22,6 @@ function Home() {
     appwriteServices.getPosts([]).then((posts) => {
       if (posts) {
         dispatch(setPosts(posts.documents));
-        console.log(posts.documents);
       }
       else{
         dispatch(isError("0 posts"));
